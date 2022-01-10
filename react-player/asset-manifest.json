@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/site-designs/react-player/static/css/main.a66895cf.chunk.css",
+    "main.js": "/site-designs/react-player/static/js/main.d2064106.chunk.js",
+    "main.js.map": "/site-designs/react-player/static/js/main.d2064106.chunk.js.map",
+    "runtime-main.js": "/site-designs/react-player/static/js/runtime-main.7d7ff1b0.js",
+    "runtime-main.js.map": "/site-designs/react-player/static/js/runtime-main.7d7ff1b0.js.map",
+    "static/js/2.b5d43530.chunk.js": "/site-designs/react-player/static/js/2.b5d43530.chunk.js",
+    "static/js/2.b5d43530.chunk.js.map": "/site-designs/react-player/static/js/2.b5d43530.chunk.js.map",
+    "static/js/3.4ad74c34.chunk.js": "/site-designs/react-player/static/js/3.4ad74c34.chunk.js",
+    "static/js/3.4ad74c34.chunk.js.map": "/site-designs/react-player/static/js/3.4ad74c34.chunk.js.map",
+    "index.html": "/site-designs/react-player/index.html",
+    "static/css/main.a66895cf.chunk.css.map": "/site-designs/react-player/static/css/main.a66895cf.chunk.css.map",
+    "static/js/2.b5d43530.chunk.js.LICENSE.txt": "/site-designs/react-player/static/js/2.b5d43530.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7d7ff1b0.js",
+    "static/js/2.b5d43530.chunk.js",
+    "static/css/main.a66895cf.chunk.css",
+    "static/js/main.d2064106.chunk.js"
+  ]
+}
