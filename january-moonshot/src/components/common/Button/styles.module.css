@@ -1,0 +1,28 @@
+.button {
+  color: #fff;
+  font-size: 17.813px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19.95px; /* 112% */
+  border-radius: 8.906px;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.button:hover {
+  scale: 1.02;
+}
+
+.button.PRIMARY {
+  border: 2.672px solid #fff;
+}
+
+.button.TEXT {
+  border: none;
+  padding: 0;
+}
