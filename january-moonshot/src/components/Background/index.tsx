@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   extractTagsFromData,
   getPixabayImages,
@@ -8,8 +8,13 @@ import { BackgroundProps } from "../../types/types";
 
 const Background = ({ onTagsListUpdate, searchKeyword }: BackgroundProps) => {
   const [homePageUrl, setHomePageUrl] = useState("");
+  const render = useRef(false);
 
   useEffect(() => {
+    if (render.current === true) return;
+
+    render.current = true;
+
     const randomPageSize = Math.floor(Math.random() * 100) + 20;
     getPixabayImages({
       per_page: randomPageSize.toString(),
