@@ -1,0 +1,87 @@
+.container {
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 8.906px;
+  background: rgba(217, 217, 217, 0.12);
+  box-shadow: -3.943px 3.943px 3.943px 0px rgba(255, 255, 255, 0.43) inset,
+    3.943px -3.943px 3.943px 0px rgba(182, 182, 182, 0.43) inset;
+  backdrop-filter: blur(25.034873962402344px);
+  width: 70%;
+  height: 4rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.searchIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.searchInput {
+  border: none;
+  border-left: 1.75px solid #fff;
+  background: none;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  color: #fff;
+  font-family: "Euclid Circular B";
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.searchInput:focus-visible {
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #fff;
+  font-family: "Euclid Circular B";
+  font-size: 17.813px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19.95px; /* 112% */
+}
+
+.actionContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.instructionText {
+  flex: 1;
+  opacity: 0;
+  transition: 0.5s all ease-in-out;
+  color: #fff;
+}
+
+.instructionVisible {
+  opacity: 1;
+}
+
+.actionKey {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: #333;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
