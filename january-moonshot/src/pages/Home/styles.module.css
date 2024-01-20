@@ -27,3 +27,16 @@
   margin-top: 1.5rem;
   text-transform: capitalize;
 }
+
+@media only screen and (max-width: 640px) {
+  .primaryText {
+    padding-top: 2rem;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .resultTextLabel {
+    margin-top: 0.75rem;
+    font-size: 24px;
+    line-height: 30px;
+  }
+}

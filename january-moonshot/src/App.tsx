@@ -73,6 +73,9 @@ const App = () => {
 
   const handleUserSignIn = (authUser: User | null) => {
     setUser(authUser);
+    if (!authUser) {
+      setDisplayType(DisplayType.Home);
+    }
   };
 
   const handleDisplayAccount = () => {

@@ -9,6 +9,9 @@ import { HeaderProps } from "../../types/types";
 import Button from "../common/Button";
 import styles from "./styles.module.css";
 import { auth } from "../../firebase";
+import loginIcon from "../../assets/login.png";
+import userIcon from "../../assets/user.png";
+import homeIcon from "../../assets/home.png";
 
 const Header = ({
   loadingAuth,
@@ -73,6 +76,9 @@ const Header = ({
                     onClick={handleCreateAccountClick}
                     label='Create Account'
                   />
+                  <div className={styles.mobileIcon} onClick={handleLoginClick}>
+                    <img src={userIcon} width={24} />
+                  </div>
                 </div>
               ) : (
                 <div className={styles.actionContainer}>
@@ -89,6 +95,22 @@ const Header = ({
                         : user.displayName || "Account"
                     }
                   />
+                  <div
+                    className={styles.mobileIcon}
+                    onClick={handleLogoutClick}
+                  >
+                    <img src={loginIcon} width={24} />
+                  </div>
+                  <div
+                    className={styles.mobileIcon}
+                    onClick={handleDisplayAccount}
+                  >
+                    {displayType !== DisplayType.Home ? (
+                      <img src={homeIcon} width={24} />
+                    ) : (
+                      <img src={userIcon} width={24} />
+                    )}
+                  </div>
                 </div>
               )}
             </>
