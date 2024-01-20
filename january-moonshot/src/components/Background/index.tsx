@@ -19,7 +19,7 @@ const Background = ({ onTagsListUpdate, searchKeyword }: BackgroundProps) => {
       colors: "blue,black,brown",
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const randomIndex = Math.floor(Math.random() * res.length);
         setHomePageUrl(res[randomIndex].largeImageURL);
         const tagsList = extractTagsFromData(res);
