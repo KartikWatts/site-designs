@@ -13,10 +13,34 @@
   align-items: center;
 }
 
+.previewDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shareIcon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: translateY(-4px);
+  margin-left: 0.5rem;
+}
+
+.shareInstructionText {
+  font-size: 1rem;
+  transform: translateY(4px);
+}
+
 .closeBtn {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.loaderContainer {
+  min-height: 50vh;
+  display: flex;
 }
 
 .bodyContainer {
@@ -116,6 +140,13 @@
 
 .downloadButton:hover {
   transform: scale(1.02);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+.disabled:hover {
+  transform: none;
 }
 
 .informationContainer {

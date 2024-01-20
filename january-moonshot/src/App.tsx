@@ -15,6 +15,9 @@ const App = () => {
 
   const [selectedItem, setSelectedItem] = useState<PixabayImage | null>(null);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const imageId = urlParams.get("imageId");
+
   useEffect(() => {
     if (!searchKeyword) return;
     setIsLoadingResults(true);
@@ -42,6 +45,12 @@ const App = () => {
     setSelectedItem(item);
   };
 
+  const handleDialogClose = () => {
+    setSelectedItem(null);
+    urlParams.delete("imageId");
+    window.history.replaceState({}, "", `${window.location.pathname}`);
+  };
+
   return (
     <>
       <Background
@@ -63,10 +72,11 @@ const App = () => {
           onImageClick={handleImageClick}
         />
       )}
-      {selectedItem && (
+      {(selectedItem || imageId) && (
         <Dialog
+          imageId={imageId}
           selectedItem={selectedItem}
-          onDialogClose={() => setSelectedItem(null)}
+          onDialogClose={handleDialogClose}
         />
       )}
     </>

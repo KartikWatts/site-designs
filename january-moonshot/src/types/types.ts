@@ -7,6 +7,7 @@ export type PixabayParams = {
   q?: string;
   page?: string;
   [key: string]: string | undefined;
+  id?: string;
 };
 
 export type TagsListProps = {
@@ -37,6 +38,7 @@ export type SearchResultsProps = {
 };
 
 export type DialogProps = {
-  selectedItem: PixabayImage;
+  imageId?: string | null;
+  selectedItem?: PixabayImage | null;
   onDialogClose: () => void;
 };
