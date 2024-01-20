@@ -9,4 +9,21 @@
   padding-top: 5rem;
   max-width: 75%;
   margin: auto;
+  transition: all 0.5s ease-in-out;
+}
+
+.displayFade {
+  display: none;
+}
+
+.resultTextLabel {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 3.551px 3.551px rgba(0, 0, 0, 0.25);
+  font-size: 42.614px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 87.359px; /* 205% */
+  margin-top: 1.5rem;
+  text-transform: capitalize;
 }

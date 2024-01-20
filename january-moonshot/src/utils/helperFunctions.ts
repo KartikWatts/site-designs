@@ -1,12 +1,11 @@
 import { PixabayImage } from "../types/interfaces";
 import { PixabayParams } from "../types/types";
 
-const searchParams = new URLSearchParams({
-  key: import.meta.env.VITE_PIXABAY_API_KEY,
-  safesearch: "true",
-});
-
 export const getPixabayImages = async (additionalParams: PixabayParams) => {
+  const searchParams = new URLSearchParams({
+    key: import.meta.env.VITE_PIXABAY_API_KEY,
+    safesearch: "true",
+  });
   try {
     for (const key in additionalParams) {
       if (additionalParams.hasOwnProperty(key)) {
@@ -25,7 +24,7 @@ export const getPixabayImages = async (additionalParams: PixabayParams) => {
 export const extractTagsFromData = (
   data: PixabayImage[],
   tagsLimit: number = 5
-): String[] => {
+): string[] => {
   const allTagsString = data.map((image) => image.tags).join(",");
   const allTagsArray = allTagsString.split(",");
   const tagFrequencyMap = allTagsArray.reduce((acc, tag) => {

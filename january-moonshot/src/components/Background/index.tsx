@@ -4,12 +4,9 @@ import {
   getPixabayImages,
 } from "../../utils/helperFunctions";
 import styles from "./styles.module.css";
+import { BackgroundProps } from "../../types/types";
 
-const Background = ({
-  onTagsListUpdate,
-}: {
-  onTagsListUpdate: (tagsList: String[]) => void;
-}) => {
+const Background = ({ onTagsListUpdate, searchKeyword }: BackgroundProps) => {
   const [homePageUrl, setHomePageUrl] = useState("");
 
   useEffect(() => {
@@ -34,7 +31,11 @@ const Background = ({
   }, []);
 
   return (
-    <section className={styles.imageContainer}>
+    <section
+      className={`${styles.imageContainer} ${
+        searchKeyword && styles.searchContainer
+      }`}
+    >
       {homePageUrl && (
         <img
           src={homePageUrl}
