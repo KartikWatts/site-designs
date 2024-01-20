@@ -9,12 +9,20 @@ import {
 import { PixabayImage } from "../../../types/interfaces";
 import { Loader } from "../Loader";
 import shareIcon from "../../../assets/share.png";
+import { ref, set } from "firebase/database";
+import db from "../../../firebase";
 
-const Dialog = ({ imageId, selectedItem, onDialogClose }: DialogProps) => {
+const Dialog = ({
+  imageId,
+  selectedItem,
+  onDialogClose,
+  user,
+}: DialogProps) => {
   const [dialogItem, setDialogItem] = useState<PixabayImage | null>(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [isUploadingData, setIsUploadingData] = useState(false);
 
   const dialogModal = useRef<HTMLDialogElement | null>(null);
 
@@ -51,6 +59,13 @@ const Dialog = ({ imageId, selectedItem, onDialogClose }: DialogProps) => {
     const urlParts = selectedImageUrl.split("/");
     const fileName = urlParts[urlParts.length - 1];
 
+    setIsUploadingData(true);
+    set(ref(db, `users/${user?.uid}/downloads/${dialogItem?.id}`), {
+      url: dialogItem?.previewURL,
+    }).catch((err) => {
+      console.error(err);
+    });
+
     fetch(selectedImageUrl, {
       method: "GET",
       headers: {},
@@ -67,6 +82,9 @@ const Dialog = ({ imageId, selectedItem, onDialogClose }: DialogProps) => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsUploadingData(false);
       });
   };
 
@@ -173,12 +191,12 @@ const Dialog = ({ imageId, selectedItem, onDialogClose }: DialogProps) => {
               </div>
               <button
                 className={`${styles.downloadButton} ${
-                  !selectedImageUrl && styles.disabled
+                  (!selectedImageUrl || isUploadingData) && styles.disabled
                 }`}
-                disabled={!selectedImageUrl}
+                disabled={!selectedImageUrl || isUploadingData}
                 onClick={(e) => downloadImage(e)}
               >
-                Download for free!
+                {isUploadingData ? "Processing..." : "Download for free!"}
               </button>
               <div className={styles.mainText}>Information</div>
               <div className={styles.informationContainer}>
