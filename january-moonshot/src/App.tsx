@@ -3,21 +3,23 @@ import Background from "./components/Background";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import { getPixabayImages } from "./utils/helperFunctions";
+import SearchResults from "./components/SearchResults";
+import { PixabayImage } from "./types/interfaces";
 
 const App = () => {
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [isLoadingResults, setIsLoadingResults] = useState(false);
+  const [searchResults, setSearchResults] = useState<PixabayImage[]>([]);
 
   useEffect(() => {
     if (!searchKeyword) return;
     setIsLoadingResults(true);
     getPixabayImages({
-      per_page: "20",
       q: searchKeyword,
     })
       .then((res) => {
-        console.log(res);
+        setSearchResults(res);
       })
       .catch((error: Error) => {
         console.error("Exception: ", error.message);
@@ -46,6 +48,13 @@ const App = () => {
         searchKeyword={searchKeyword}
         isLoadingResults={isLoadingResults}
       />
+      {searchKeyword && (
+        <SearchResults
+          searchResults={searchResults}
+          searchKeyword={searchKeyword}
+          isLoadingResults={isLoadingResults}
+        />
+      )}
     </>
   );
 };

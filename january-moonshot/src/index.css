@@ -33,3 +33,22 @@
   font-style: normal;
   font-display: swap;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: gray;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2b2b5a;
+  border-radius: 20px;
+  border: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

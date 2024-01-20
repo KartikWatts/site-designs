@@ -1,8 +1,11 @@
+import { PixabayImage } from "./interfaces";
+
 export type PixabayParams = {
   per_page?: string;
   min_width?: string;
   category?: string;
   q?: string;
+  page?: string;
   [key: string]: string | undefined;
 };
 
@@ -24,4 +27,10 @@ export type HomeProps = {
 export type BackgroundProps = {
   onTagsListUpdate: (tagsList: string[]) => void;
   searchKeyword: string;
+};
+
+export type SearchResultsProps = {
+  searchResults: PixabayImage[];
+  searchKeyword: string;
+  isLoadingResults: boolean;
 };

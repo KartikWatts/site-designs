@@ -1,0 +1,26 @@
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+.loader {
+  width: 100px;
+  padding: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #294b7a;
+  --_m: conic-gradient(#0000 20%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: s3 1s infinite linear;
+}
+@keyframes s3 {
+  to {
+    transform: rotate(1turn);
+  }
+}

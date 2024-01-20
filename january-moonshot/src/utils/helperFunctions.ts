@@ -26,15 +26,34 @@ export const extractTagsFromData = (
   tagsLimit: number = 5
 ): string[] => {
   const allTagsString = data.map((image) => image.tags).join(",");
+  // console.log(allTagsString);
+
   const allTagsArray = allTagsString.split(",");
-  const tagFrequencyMap = allTagsArray.reduce((acc, tag) => {
-    acc.set(tag, (acc.get(tag) || 0) + 1);
-    return acc;
-  }, new Map<string, number>());
-  const sortedTags = [...tagFrequencyMap.entries()].sort((a, b) => b[1] - a[1]);
-  const topTagsList = sortedTags
-    .slice(0, tagsLimit)
-    .map(([tag]) => capitalizeFirstLetters(tag));
+
+  // console.log(allTagsArray);
+
+  // console.log(uniqueTagsArray);
+
+  const sortedTags = allTagsArray.sort((a, b) => {
+    const countA = allTagsArray.filter((tag) => tag === a).length;
+    const countB = allTagsArray.filter((tag) => tag === b).length;
+    return countB - countA;
+  });
+  // console.log(sortedTags);
+
+  const uniqueTagsSet = new Set<string>();
+
+  sortedTags.forEach((tag) => {
+    const capitalizedTag = capitalizeFirstLetters(tag);
+    uniqueTagsSet.add(capitalizedTag);
+  });
+
+  const uniqueTagsArray = Array.from(uniqueTagsSet);
+
+  const topTagsList = uniqueTagsArray.slice(0, tagsLimit);
+
+  // console.log(topTagsList);
+
   return topTagsList;
 };
 
