@@ -33,4 +33,10 @@ export type SearchResultsProps = {
   searchResults: PixabayImage[];
   searchKeyword: string;
   isLoadingResults: boolean;
+  onImageClick: (item: PixabayImage) => void;
+};
+
+export type DialogProps = {
+  selectedItem: PixabayImage;
+  onDialogClose: () => void;
 };

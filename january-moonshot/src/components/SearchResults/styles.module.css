@@ -19,16 +19,23 @@
 }
 
 .resultCardContainer {
+  transition: all 0.2s ease-in-out;
+}
+.resultCardContainer:hover {
+  transform: scale(1.02);
 }
 
 .resultImageContainer {
+  cursor: pointer;
 }
 
 .resultImage {
   width: calc(33vw - 5.5rem);
-  aspect-ratio: 1.5;
+  aspect-ratio: 1;
   border-radius: 0.5rem;
   object-fit: cover;
+  user-select: none;
+  pointer-events: none;
 }
 
 .filterContainer {

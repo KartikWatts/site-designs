@@ -13,6 +13,7 @@ const SearchResults = ({
   searchResults,
   searchKeyword,
   isLoadingResults,
+  onImageClick,
 }: SearchResultsProps) => {
   if (isLoadingResults) {
     return (
@@ -104,7 +105,10 @@ const SearchResults = ({
               key={`${resultItem.id}_${index}`}
               className={styles.resultCardContainer}
             >
-              <div className={styles.resultImageContainer}>
+              <div
+                className={styles.resultImageContainer}
+                onClick={() => onImageClick(resultItem)}
+              >
                 <img
                   className={styles.resultImage}
                   src={resultItem.webformatURL}
