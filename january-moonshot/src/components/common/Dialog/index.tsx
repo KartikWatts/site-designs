@@ -4,6 +4,7 @@ import { DialogProps } from "../../../types/types";
 import Checkbox from "../Checkbox";
 import {
   extractTagsFromData,
+  getFirebaseData,
   getPixabayImages,
 } from "../../../utils/helperFunctions";
 import { PixabayImage } from "../../../types/interfaces";
@@ -23,6 +24,7 @@ const Dialog = ({
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [isCopied, setIsCopied] = useState(false);
   const [isUploadingData, setIsUploadingData] = useState(false);
+  const [favorited, setFavorited] = useState(false);
 
   const dialogModal = useRef<HTMLDialogElement | null>(null);
 
@@ -49,8 +51,18 @@ const Dialog = ({
     if (dialogItem) {
       const tags = extractTagsFromData([dialogItem], 10);
       setTagsList(tags);
+      const fetchData = async () => {
+        const favoriteResults = await getFirebaseData("favorites", user);
+        const checkFavorite = favoriteResults.find(
+          (result) => result.key === dialogItem.id.toString()
+        );
+        if (checkFavorite) {
+          setFavorited(true);
+        }
+      };
+      fetchData();
     }
-  }, [dialogItem]);
+  }, [dialogItem, user]);
 
   const downloadImage = (event: MouseEvent) => {
     event.preventDefault();
@@ -110,6 +122,30 @@ const Dialog = ({
     }
   };
 
+  const toggleFavorite = () => {
+    setIsUploadingData(true);
+    if (!favorited) {
+      set(ref(db, `users/${user?.uid}/favorites/${dialogItem?.id}`), {
+        url: dialogItem?.previewURL,
+      })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setIsUploadingData(false);
+        });
+    } else {
+      set(ref(db, `users/${user?.uid}/favorites/${dialogItem?.id}`), null)
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setIsUploadingData(false);
+        });
+    }
+    setFavorited((prev) => !prev);
+  };
+
   return (
     <dialog ref={dialogModal}>
       <div className={styles.modalHeader}>
@@ -120,6 +156,23 @@ const Dialog = ({
             <div className={styles.shareInstructionText}>
               {isCopied ? "Copied!" : "Copy to Clipboard"}
             </div>
+          </div>
+          <div className={styles.heartIcon}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='16'
+              height='16'
+              fill={favorited ? "red" : "currentColor"}
+              className='bi bi-heart-fill'
+              viewBox='0 0 16 16'
+              onClick={toggleFavorite}
+              style={{ cursor: "pointer" }}
+            >
+              <path
+                fillRule='evenodd'
+                d='M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z'
+              />
+            </svg>
           </div>
         </div>
         <div className={styles.closeBtn} onClick={handleDialogClose}>

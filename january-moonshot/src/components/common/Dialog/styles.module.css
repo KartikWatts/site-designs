@@ -212,3 +212,8 @@
   padding: 0.5rem;
   margin-right: 0.5rem;
 }
+
+.heartIcon {
+  transform: scale(1.5);
+  margin-left: 16px;
+}
