@@ -1,5 +1,8 @@
+import { User } from "firebase/auth";
+import db from "../firebase";
 import { PixabayImage } from "../types/interfaces";
 import { PixabayParams } from "../types/types";
+import { child, get, ref } from "firebase/database";
 
 export const getPixabayImages = async (additionalParams: PixabayParams) => {
   const searchParams = new URLSearchParams({
@@ -55,6 +58,46 @@ export const extractTagsFromData = (
   // console.log(topTagsList);
 
   return topTagsList;
+};
+
+export const getFirebaseData = (
+  dataKey: string,
+  user: User | null
+): Promise<Array<{ key: string; url: string }>> => {
+  return new Promise((resolve, reject) => {
+    const userUid = user?.uid;
+
+    if (!userUid) {
+      reject("User is not authenticated");
+      return;
+    }
+
+    const dataRef = child(ref(db), `users/${userUid}/${dataKey}`);
+
+    get(dataRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const images = snapshot.val();
+          const imageArray = [];
+
+          for (const key in images) {
+            if (Object.hasOwnProperty.call(images, key)) {
+              const item = images[key];
+              imageArray.push({ key, url: item.url });
+            }
+          }
+
+          resolve(imageArray);
+        } else {
+          console.log("No data available");
+          resolve([]); // Resolve with an empty array if no data is available
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
 };
 
 const capitalizeFirstLetters = (input: string): string => {

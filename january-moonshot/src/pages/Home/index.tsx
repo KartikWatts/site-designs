@@ -1,6 +1,6 @@
+import SearchBar from "../../components/SearchBar";
+import TrendingKeywords from "../../components/TrendingKeywords";
 import { HomeProps } from "../../types/types";
-import SearchBar from "../SearchBar";
-import TrendingKeywords from "../TrendingKeywords";
 import styles from "./styles.module.css";
 
 const Home = ({

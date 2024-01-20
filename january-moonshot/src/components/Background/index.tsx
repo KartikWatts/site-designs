@@ -5,8 +5,13 @@ import {
 } from "../../utils/helperFunctions";
 import styles from "./styles.module.css";
 import { BackgroundProps } from "../../types/types";
+import { DisplayType } from "../../types/enums";
 
-const Background = ({ onTagsListUpdate, searchKeyword }: BackgroundProps) => {
+const Background = ({
+  onTagsListUpdate,
+  searchKeyword,
+  displayType,
+}: BackgroundProps) => {
   const [homePageUrl, setHomePageUrl] = useState("");
   const render = useRef(false);
 
@@ -41,7 +46,7 @@ const Background = ({ onTagsListUpdate, searchKeyword }: BackgroundProps) => {
         searchKeyword && styles.searchContainer
       }`}
     >
-      {homePageUrl && (
+      {homePageUrl && displayType === DisplayType.Home && (
         <img
           src={homePageUrl}
           alt='Background Image'

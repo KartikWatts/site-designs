@@ -22,3 +22,8 @@ export interface PixabayImage {
   webformatURL: string;
   webformatWidth: number;
 }
+
+export interface FirebaseImageData {
+  key: string;
+  url: string;
+}
