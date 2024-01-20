@@ -66,3 +66,9 @@
   border: none;
   outline: none;
 }
+
+@media only screen and (max-width: 640px) {
+  :modal {
+    width: 100%;
+  }
+}

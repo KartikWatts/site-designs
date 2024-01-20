@@ -17,6 +17,7 @@
 
 .containerCompressed {
   width: 50%;
+  min-width: 500px;
 }
 
 .labelContainer {
@@ -89,4 +90,27 @@
   line-height: 1;
   padding: 2px 4px;
   white-space: nowrap;
+}
+
+@media only screen and (max-width: 1024px) {
+  .instructionText {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    margin-top: 2.5rem;
+    width: 90%;
+  }
+  .containerCompressed {
+    width: 90%;
+    min-width: auto;
+  }
+  .labelContainer {
+    justify-content: flex-start;
+  }
+  .searchInput {
+    max-width: 200px;
+  }
 }

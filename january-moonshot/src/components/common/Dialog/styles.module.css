@@ -217,3 +217,47 @@
   transform: scale(1.5);
   margin-left: 16px;
 }
+
+.loginText {
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  color: #e24f22;
+}
+
+@media only screen and (max-width: 640px) {
+  .modalHeader {
+    font-size: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  .previewDetails {
+    flex-wrap: wrap;
+  }
+  .shareInstructionText {
+    display: none;
+  }
+  .closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .detailsContainer {
+    flex-wrap: wrap;
+  }
+  .resultImage {
+    width: 100%;
+  }
+  .bodyContainer {
+    padding: 0.75rem;
+  }
+  .detailsContainer {
+    flex-wrap: wrap;
+  }
+  .descriptionContainer {
+    width: 100%;
+  }
+  .heartIcon {
+    transform: translateY(4px) scale(1.5);
+  }
+}

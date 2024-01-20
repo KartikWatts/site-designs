@@ -242,9 +242,13 @@ const Dialog = ({
                   onChange={(imageUrl) => setSelectedImageUrl(imageUrl)}
                 />
               </div>
+              {!user && (
+                <div className={styles.loginText}>Login to download</div>
+              )}
               <button
                 className={`${styles.downloadButton} ${
-                  (!selectedImageUrl || isUploadingData) && styles.disabled
+                  (!selectedImageUrl || isUploadingData || !user) &&
+                  styles.disabled
                 }`}
                 disabled={!selectedImageUrl || isUploadingData}
                 onClick={(e) => downloadImage(e)}
