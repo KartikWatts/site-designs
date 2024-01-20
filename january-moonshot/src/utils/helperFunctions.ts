@@ -1,3 +1,4 @@
+import { PixabayImage } from "../types/interfaces";
 import { PixabayParams } from "../types/types";
 
 const searchParams = new URLSearchParams({
@@ -19,4 +20,31 @@ export const getPixabayImages = async (additionalParams: PixabayParams) => {
   } catch (e) {
     throw new Error("Something went wrong");
   }
+};
+
+export const extractTagsFromData = (
+  data: PixabayImage[],
+  tagsLimit: number = 5
+): String[] => {
+  const allTagsString = data.map((image) => image.tags).join(",");
+  const allTagsArray = allTagsString.split(",");
+  const tagFrequencyMap = allTagsArray.reduce((acc, tag) => {
+    acc.set(tag, (acc.get(tag) || 0) + 1);
+    return acc;
+  }, new Map<string, number>());
+  const sortedTags = [...tagFrequencyMap.entries()].sort((a, b) => b[1] - a[1]);
+  const topTagsList = sortedTags
+    .slice(0, tagsLimit)
+    .map(([tag]) => capitalizeFirstLetters(tag));
+  return topTagsList;
+};
+
+const capitalizeFirstLetters = (input: string): string => {
+  const words = input.trim().split(/\s+/);
+
+  const capitalizedWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  );
+
+  return capitalizedWords.join(" ");
 };

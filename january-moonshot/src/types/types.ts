@@ -4,3 +4,7 @@ export type PixabayParams = {
   category?: string;
   [key: string]: string | undefined;
 };
+
+export type TagsListProps = {
+  tagsList: String[];
+};

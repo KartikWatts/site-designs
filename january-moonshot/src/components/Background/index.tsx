@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
-import { getPixabayImages } from "../../utils/helperFunctions";
+import {
+  extractTagsFromData,
+  getPixabayImages,
+} from "../../utils/helperFunctions";
 import styles from "./styles.module.css";
 
-const Background = () => {
+const Background = ({
+  onTagsListUpdate,
+}: {
+  onTagsListUpdate: (tagsList: String[]) => void;
+}) => {
   const [homePageUrl, setHomePageUrl] = useState("");
 
   useEffect(() => {
+    const randomPageSize = Math.floor(Math.random() * 100) + 20;
     getPixabayImages({
+      per_page: randomPageSize.toString(),
       min_width: "1400",
       min_height: "1000",
       category: "backgrounds",
@@ -16,6 +25,8 @@ const Background = () => {
         console.log(res);
         const randomIndex = Math.floor(Math.random() * res.length);
         setHomePageUrl(res[randomIndex].largeImageURL);
+        const tagsList = extractTagsFromData(res);
+        onTagsListUpdate(tagsList);
       })
       .catch((error: Error) => {
         console.error("Exception: ", error.message);
@@ -24,11 +35,14 @@ const Background = () => {
 
   return (
     <section className={styles.imageContainer}>
-      <img
-        src={homePageUrl}
-        alt='Full Desktop Image'
-        className={styles.background}
-      />
+      {homePageUrl && (
+        <img
+          src={homePageUrl}
+          alt='Background Image'
+          className={styles.background}
+        />
+      )}
+      <div className={styles.overlay}></div>
     </section>
   );
 };
