@@ -11,7 +11,7 @@ export const getPixabayImages = async (additionalParams: PixabayParams) => {
   });
   try {
     for (const key in additionalParams) {
-      if (additionalParams.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(additionalParams, key)) {
         const value = additionalParams[key] || "";
         if (value) searchParams.append(key, value);
       }

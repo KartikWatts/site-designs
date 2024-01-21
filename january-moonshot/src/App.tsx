@@ -50,7 +50,7 @@ const App = () => {
         }
       })
       .finally(() => setLoadingAuth(false));
-  }, [auth]);
+  }, []);
 
   const handleSearchAction = (keyword: string) => {
     setSearchKeyword(keyword);
@@ -113,12 +113,14 @@ const App = () => {
             isLoadingResults={isLoadingResults}
           />
           {searchKeyword && (
-            <SearchResults
-              searchResults={searchResults}
-              searchKeyword={searchKeyword}
-              isLoadingResults={isLoadingResults}
-              onImageClick={handleImageClick}
-            />
+            <>
+              <SearchResults
+                searchResults={searchResults}
+                searchKeyword={searchKeyword}
+                isLoadingResults={isLoadingResults}
+                onImageClick={handleImageClick}
+              />
+            </>
           )}
         </>
       )}

@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import { AccountProps } from "../../types/types";
 import styles from "./styles.module.css";
-import { child, get, ref } from "firebase/database";
-import db, { auth } from "../../firebase";
 import { getFirebaseData } from "../../utils/helperFunctions";
 import { FirebaseImageData } from "../../types/interfaces";
 import { Loader } from "../../components/common/Loader";
 
-const images = [
-  {
-    id: "8113311",
-    url: "https://cdn.pixabay.com/photo/2023/07/07/20/12/dragonfly-8113312_150.jpg",
-  },
-  {
-    id: "8113312",
-    url: "https://cdn.pixabay.com/photo/2023/07/07/20/12/dragonfly-8113312_150.jpg",
-  },
-];
+// const images = [
+//   {
+//     id: "8113311",
+//     url: "https://cdn.pixabay.com/photo/2023/07/07/20/12/dragonfly-8113312_150.jpg",
+//   },
+//   {
+//     id: "8113312",
+//     url: "https://cdn.pixabay.com/photo/2023/07/07/20/12/dragonfly-8113312_150.jpg",
+//   },
+// ];
 
 const Account = ({ handleAccountImageClick, user }: AccountProps) => {
   const [downloadedImages, setDownloadedImages] = useState<FirebaseImageData[]>(
@@ -39,7 +37,7 @@ const Account = ({ handleAccountImageClick, user }: AccountProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   if (isLoading) {
     return (
