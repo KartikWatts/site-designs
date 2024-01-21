@@ -144,7 +144,9 @@
 
 .disabled {
   cursor: not-allowed;
+  pointer-events: none;
 }
+
 .disabled:hover {
   transform: none;
 }

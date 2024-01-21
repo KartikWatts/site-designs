@@ -38,7 +38,7 @@ const Background = ({
       .catch((error: Error) => {
         console.error("Exception: ", error.message);
       });
-  }, []);
+  }, [onTagsListUpdate]);
 
   return (
     <section

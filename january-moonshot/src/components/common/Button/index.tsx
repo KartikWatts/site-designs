@@ -6,7 +6,7 @@ const Button = ({
   onClick,
   variant = ButtonVariant.Primary,
 }: {
-  label: String;
+  label: string;
   onClick: () => void;
   variant?: ButtonVariant;
 }) => {

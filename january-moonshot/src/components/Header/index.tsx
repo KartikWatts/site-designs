@@ -12,6 +12,7 @@ import { auth } from "../../firebase";
 import loginIcon from "../../assets/login.png";
 import userIcon from "../../assets/user.png";
 import homeIcon from "../../assets/home.png";
+import { FirebaseError } from "firebase/app";
 
 const Header = ({
   loadingAuth,
@@ -27,14 +28,14 @@ const Header = ({
       .then((result) => {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         const authUser = result.user;
-        console.log(authUser);
+        // console.log(authUser);
         handleUserSignIn(authUser);
       })
-      .catch((error: any) => {
-        const errorCode = error.code;
+      .catch((error: FirebaseError) => {
+        // const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        // const email = error.customData.email;
+        // const credential = GoogleAuthProvider.credentialFromError(error);
         console.error(errorMessage);
       });
   };
@@ -51,7 +52,7 @@ const Header = ({
       .then(() => {
         handleUserSignIn(null);
       })
-      .catch((error: any) => {
+      .catch((error: FirebaseError) => {
         console.error(error);
       });
   };

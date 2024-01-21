@@ -26,6 +26,50 @@ const SearchResults = ({
     return <div className={styles.noResultText}>No Result Found</div>;
   }
 
+  return (
+    <SearchResultsDisplay
+      searchResults={searchResults}
+      searchKeyword={searchKeyword}
+      isLoadingResults={isLoadingResults}
+      onImageClick={onImageClick}
+    />
+  );
+};
+
+const TagsFilter = ({
+  filterTags,
+  onTagClick,
+  selectedFilterTag,
+}: {
+  filterTags: string[];
+  onTagClick: (tag: string) => void;
+  selectedFilterTag: string;
+}) => {
+  return (
+    <div className={styles.filterContainer}>
+      {filterTags.map((tag, index) => {
+        return (
+          <div
+            key={`${tag}_${index}`}
+            onClick={() => onTagClick(tag)}
+            className={`${styles.filterTag} ${
+              selectedFilterTag === tag && styles.selectedTag
+            }`}
+          >
+            {tag}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const SearchResultsDisplay = ({
+  searchResults,
+  searchKeyword,
+  // isLoadingResults,
+  onImageClick,
+}: SearchResultsProps) => {
   const [results, setResults] = useState(searchResults);
   const [filteredResults, setFilteredResults] = useState(searchResults);
   const [selectedFilterTag, setSelectedFilterTag] = useState("");
@@ -137,34 +181,6 @@ const SearchResults = ({
         )}
       </div>
     </section>
-  );
-};
-
-const TagsFilter = ({
-  filterTags,
-  onTagClick,
-  selectedFilterTag,
-}: {
-  filterTags: string[];
-  onTagClick: (tag: string) => void;
-  selectedFilterTag: string;
-}) => {
-  return (
-    <div className={styles.filterContainer}>
-      {filterTags.map((tag, index) => {
-        return (
-          <div
-            key={`${tag}_${index}`}
-            onClick={() => onTagClick(tag)}
-            className={`${styles.filterTag} ${
-              selectedFilterTag === tag && styles.selectedTag
-            }`}
-          >
-            {tag}
-          </div>
-        );
-      })}
-    </div>
   );
 };
 
